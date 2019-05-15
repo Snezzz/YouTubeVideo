@@ -22,8 +22,6 @@ public class YouTubeConnection {
         apiKey = properties.getProperty("youtube.apikey");
         video = new HashMap<String, List<String>>();
         List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube.force-ssl");
-        //main_channels=new LinkedList<String>();
-
         try {
             Credential credential = Auth.authorize(scopes, "commentthreads");
             youtube = new YouTube.Builder(Auth.HTTP_TRANSPORT, Auth.JSON_FACTORY, credential).setApplicationName("youtube-cmdline-search-sample").build();
@@ -105,7 +103,7 @@ public class YouTubeConnection {
 
     private void get_video_id(Iterator<SearchResult> iteratorSearchResults) {
         if (!iteratorSearchResults.hasNext()) {
-            //   System.out.println(" There aren't any results for your query.");
+               System.out.println(" There aren't any results for your query.");
         }
 //перебираем список видео
         while (iteratorSearchResults.hasNext()) {

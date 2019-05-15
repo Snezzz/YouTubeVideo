@@ -76,8 +76,6 @@ public class Constructor {
         double time_after=System.currentTimeMillis();
         double result_time=(time_after-time_before)/1000;
         System.out.println("Время выполнения запросов:"+result_time+" c.");
-        //создаем результативный .xls
-       // create_XLS();
         System.out.println("Общее количество комментариев:" + all_comments_count);
         System.out.println("Время выполнения программы с построением графа:"+(System.currentTimeMillis()-time_before)/1000);
 
@@ -150,11 +148,6 @@ public class Constructor {
                 video_col++;
         }
         System.out.println("количество обработанного видео:"+video_col);
-
-     //   for (Map.Entry<String, Map<String, Map<String, String>>> entry : comments.entrySet()) {
-       //     optimal_load_data("postgres", "qwerty", entry.getValue(), true, entry.getKey());
-        //}
-        System.out.println("end loading");
     }
     //сбор информации о видео в коллекцию
    private Map<String, String> getInformation(VideoListResponse listResponse) {
@@ -272,7 +265,7 @@ public class Constructor {
             Map<String,Map <String,String>> help_data=new HashMap<String, Map<String, String>>();
             String parent_id=id;
         if (comments.isEmpty()) {
-           // System.out.println("There aren't comment replies.");
+            System.out.println("There aren't comment replies.");
         } else {
 //все ответы
             long time = System.currentTimeMillis();
@@ -629,9 +622,6 @@ public class Constructor {
 
             main_nodes_map.put(author_id, data); //author_id - адрес автора комментария
             get_replies(snippet, id, author_id, currentComment.getId(), nodes_map, comments_data);
-          //  System.out.println(Thread.currentThread().getName()+" закончил работу");
-       //     System.out.println( Thread.currentThread().getName()+" проработал "+(out-System.currentTimeMillis())/1000+" с.");
-
         }
     }
         public void optimal_load_data(String user, String password, Map<String, Map<String, String>> from,
