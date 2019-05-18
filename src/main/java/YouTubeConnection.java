@@ -86,9 +86,8 @@ public class YouTubeConnection {
                        stop = true;
                         break;
                       }
-                   else {
+                  else
                         idList.add(video_id);
-                    }
             }
             nextToken = playlistItemResult.getNextPageToken();
             if(stop){

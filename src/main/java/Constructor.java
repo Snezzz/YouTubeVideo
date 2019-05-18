@@ -77,7 +77,6 @@ public class Constructor {
         double result_time=(time_after-time_before)/1000;
         System.out.println("Время выполнения запросов:"+result_time+" c.");
         System.out.println("Общее количество комментариев:" + all_comments_count);
-        System.out.println("Время выполнения программы с построением графа:"+(System.currentTimeMillis()-time_before)/1000);
 
     }
 
@@ -414,7 +413,10 @@ public class Constructor {
                 for (Map.Entry<String, Map<String, String>> entry : from.entrySet()) {
                     sql = "INSERT INTO postgres.public.comments (comment_id, video_id, comment_text, comment_author, " +
                             "comment_date,author_id,parent_id,real_text,answer) VALUES (?,?,?,?,?,?,?,?,?)";
-                    PreparedStatement stat = c.prepareStatement(sql);
+                //    sql = "INSERT INTO avia.public.comments (comment_id, video_id, comment_text, comment_author, " +
+                  //                    "comment_date,author_id,parent_id,real_text,answer) VALUES (?,?,?,?,?,?,?,?,?)";
+
+                            PreparedStatement stat = c.prepareStatement(sql);
                     stat.setString(1, entry.getValue().get("comment_id"));
                     stat.setString(2, video_id);
                     stat.setString(3, entry.getValue().get("comment"));
@@ -438,8 +440,12 @@ public class Constructor {
                     sql="INSERT INTO postgres.public.videos " +
                                     "(video_id,video_title,author,publication_date,description,view_count," +
                             "likes_count,dislikes_count,comments_count,tags,channel_id,channel_follovers_count," +
-                            "channel_video_count,channel_description, confirmation) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-                    PreparedStatement  preparedStatement = c.prepareStatement(sql);
+                           "channel_video_count,channel_description, confirmation) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                  //  sql="INSERT INTO avia.public.videos " +
+                    //                           " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+
+                            PreparedStatement  preparedStatement = c.prepareStatement(sql);
                     preparedStatement.setString(1,entry.getKey());
                     preparedStatement.setString(2, entry.getValue().get("title"));
                     preparedStatement.setString(3,entry.getValue().get("author"));
