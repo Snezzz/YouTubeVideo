@@ -62,6 +62,7 @@ public class Constructor {
         YouTube.Videos.List videosListByIdRequest = YouTubeConnection.youtube.videos().list("id,statistics," +
                 "snippet,recordingDetails");
         double in = System.currentTimeMillis();
+        //для каждого канала
         for(Map.Entry<String,List<String>> entry : channels.video.entrySet()) {
             System.out.println("канал"+ entry.getKey());
             comments = new HashMap<String, Map<String, Map<String, String>>>();
@@ -132,8 +133,10 @@ public class Constructor {
             }
             //каждые 5 видео отсылаем в БД
             if(video_col==5){
-                sort(data);
+                sort(data); //формируем отсортированную new_map
+                //загружаем данные о видео
                 load_data("postgres", "qwerty", new_map, false, null);
+                //загружаем данные о комментариях
                 for (Map.Entry<String, Map<String, Map<String, String>>> entry : comments.entrySet()) {
                     optimal_load_data("postgres", "qwerty", entry.getValue(), true, entry.getKey());
                     System.out.println("Комментарии видео "+entry.getKey()+" отправлены");
